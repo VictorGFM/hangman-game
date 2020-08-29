@@ -10,19 +10,20 @@ void logExit(const char *message) {
 	exit(EXIT_FAILURE);
 }
 
-int addrparse(const char *addrstr, const char *portstr,
+int addressParse(const char *addrstr, const char *portstr,
               struct sockaddr_storage *storage) {
     if (addrstr == NULL || portstr == NULL) {
         return -1;
     }
 
-    uint16_t port = (uint16_t)atoi(portstr); // unsigned short
+    uint16_t port = (uint16_t)atoi(portstr);
     if (port == 0) {
         return -1;
     }
-    port = htons(port); // host to network short
 
-    struct in_addr inaddr4; // 32-bit IP address
+    port = htons(port);
+
+    struct in_addr inaddr4;
     if (inet_pton(AF_INET, addrstr, &inaddr4)) {
         struct sockaddr_in *addr4 = (struct sockaddr_in *)storage;
         addr4->sin_family = AF_INET;
@@ -31,7 +32,7 @@ int addrparse(const char *addrstr, const char *portstr,
         return 0;
     }
 
-    struct in6_addr inaddr6; // 128-bit IPv6 address
+    struct in6_addr inaddr6;
     if (inet_pton(AF_INET6, addrstr, &inaddr6)) {
         struct sockaddr_in6 *addr6 = (struct sockaddr_in6 *)storage;
         addr6->sin6_family = AF_INET6;
@@ -43,7 +44,7 @@ int addrparse(const char *addrstr, const char *portstr,
     return -1;
 }
 
-int server_sockaddr_init(const char *ipVersion, const char *portstr,
+int serverAddressInitialize(const char *ipVersion, const char *portstr,
                          struct sockaddr_storage *storage) {
     uint16_t port = (uint16_t)atoi(portstr); 
     if (port == 0) {
