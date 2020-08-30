@@ -35,12 +35,12 @@ int main(int argc, char *argv[]) {
 	printWord(word);
     
 	int messageType = 0;
-    while(messageType != END_GAME_TYPE) {
-        char letter = readLetter();
+	while(messageType != END_GAME_TYPE) {
+		char letter = readLetter();
 		sendGuess(sckt, letter);
 		messageType = receiveAnswerFromServer(sckt, word, letter);
 		printWord(word);
-    }
+	}
 
 	close(sckt);
 
