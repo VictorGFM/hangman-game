@@ -20,7 +20,6 @@ int addressParse(const char *addrstr, const char *portstr,
     if (port == 0) {
         return -1;
     }
-
     port = htons(port);
 
     struct in_addr inaddr4;
@@ -44,7 +43,7 @@ int addressParse(const char *addrstr, const char *portstr,
     return -1;
 }
 
-int serverAddressInitialize(const char *ipVersion, const char *portstr,
+int initializeServerAddress(const char *ipVersion, const char *portstr,
                          struct sockaddr_storage *storage) {
     uint16_t port = (uint16_t)atoi(portstr); 
     if (port == 0) {

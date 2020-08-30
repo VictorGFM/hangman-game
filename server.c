@@ -9,7 +9,7 @@
 #include <sys/types.h>
 
 #define IP_VERSION "v4"
-#define WORD "NASTAFF"
+#define WORD "MESSAGE"
 
 void validateInputParameters(int argc);
 int initializeSocket(char *argv[], struct sockaddr_storage *storage);
@@ -69,7 +69,7 @@ void validateInputParameters(int argc) {
 }
 
 int initializeSocket(char *argv[], struct sockaddr_storage *storage) {
-    if(serverAddressInitialize(IP_VERSION, argv[1], storage) != 0) {
+    if(initializeServerAddress(IP_VERSION, argv[1], storage) != 0) {
         logExit("Error initializing address.");
     }
     int serverSocket = socket(storage->ss_family, SOCK_STREAM, 0);

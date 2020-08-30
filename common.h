@@ -13,4 +13,4 @@ void logExit(const char *msg);
 
 int addressParse(const char *addrstr, const char *portstr, struct sockaddr_storage *storage);
 
-int serverAddressInitialize(const char *proto, const char *portstr, struct sockaddr_storage *storage);
+int initializeServerAddress(const char *proto, const char *portstr, struct sockaddr_storage *storage);
