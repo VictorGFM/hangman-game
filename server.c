@@ -91,7 +91,7 @@ void serverBind(int serverSocket, struct sockaddr_storage *storage) {
 }
 
 void serverListen(int serverSocket) {
-    if (listen(serverSocket, 10) != 0) {
+    if (listen(serverSocket, 1) != 0) {
         logExit("Error on listen.");
     }
 }
